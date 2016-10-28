@@ -9,6 +9,10 @@ class Similar < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :availables,
+             :through => :similar_foods_availables,
+             :source => :availables
+
   # Validations
 
 end
