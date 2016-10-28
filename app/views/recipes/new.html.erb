@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @recipe.errors.any? %>
+  <% @recipe.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Recipe</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_recipe" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @recipe.name %>">
+      </div>
+
+      <!-- Label and input for url -->
+      <div class="form-group">
+        <label for="url" class="control-label">
+          Url
+        </label>
+
+        <input type="text" id="url" name="url" placeholder="Url" class="form-control" value="<%= @recipe.url %>">
+      </div>
+
+      <!-- Label and input for instructions -->
+      <div class="form-group">
+        <label for="instructions" class="control-label">
+          Instructions
+        </label>
+
+        <input type="text" id="instructions" name="instructions" placeholder="Instructions" class="form-control" value="<%= @recipe.instructions %>">
+      </div>
+
+      <!-- Label and input for ease -->
+      <div class="form-group">
+        <label for="ease" class="control-label">
+          Ease
+        </label>
+
+        <input type="text" id="ease" name="ease" placeholder="Ease" class="form-control" value="<%= @recipe.ease %>">
+      </div>
+
+      <!-- Label and input for type -->
+      <div class="form-group">
+        <label for="type" class="control-label">
+          Type
+        </label>
+
+        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @recipe.type %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Recipe
+      </button>
+      or
+      <a href="/recipes">Cancel</a>
+    </form>
+  </div>
+</div>
