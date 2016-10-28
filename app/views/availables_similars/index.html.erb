@@ -16,7 +16,7 @@
 
       <% @availables_similars.each do |availables_similar| %>
       <tr>
-        <td><%= availables_similar.similar_id %></td>
+        <td><%= availables_similar.similar_foods.similar_name %></td>
         <td><%= availables_similar.availables_id %></td>
         <td>
           <a href="/availables_similars/<%= availables_similar.id %>" class="btn btn-primary">Show</a>
