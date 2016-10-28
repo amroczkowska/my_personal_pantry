@@ -61,6 +61,35 @@
           </a>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_foods_recipe" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for foods_id -->
+      <div class="form-group">
+        <label for="foods_id" class="control-label">
+          Foods
+        </label>
+
+        <%= select_tag(:foods_id, options_from_collection_for_select(Food.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for recipes_id -->
+      <div class="form-group">
+        <label for="recipes_id" class="control-label">
+          Recipes
+        </label>
+
+        <%= select_tag(:recipes_id, options_from_collection_for_select(Recipe.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Foods Recipe
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

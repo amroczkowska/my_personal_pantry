@@ -67,6 +67,35 @@
           </a>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_availables_similar" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for similar_id -->
+      <div class="form-group">
+        <label for="similar_id" class="control-label">
+          Similar
+        </label>
+
+        <%= select_tag(:similar_id, options_from_collection_for_select(Similar.all, :id, :similar_name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for availables_id -->
+      <div class="form-group">
+        <label for="availables_id" class="control-label">
+          Availables
+        </label>
+
+        <%= select_tag(:availables_id, options_from_collection_for_select(Available.all, :id, :foods_id), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Availables Similar
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
