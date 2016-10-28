@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @availables_similar.errors.any? %>
+  <% @availables_similar.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Availables Similar</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_availables_similar" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for similar_id -->
+      <div class="form-group">
+        <label for="similar_id" class="control-label">
+          Similar
+        </label>
+
+        <input type="text" id="similar_id" name="similar_id" placeholder="Similar" class="form-control" value="<%= @availables_similar.similar_id %>">
+      </div>
+
+      <!-- Label and input for availables_id -->
+      <div class="form-group">
+        <label for="availables_id" class="control-label">
+          Availables
+        </label>
+
+        <input type="text" id="availables_id" name="availables_id" placeholder="Availables" class="form-control" value="<%= @availables_similar.availables_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Availables Similar
+      </button>
+      or
+      <a href="/availables_similars">Cancel</a>
+    </form>
+  </div>
+</div>
