@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Similar resource:
+  # CREATE
+  get "/similars/new", :controller => "similars", :action => "new"
+  post "/create_similar", :controller => "similars", :action => "create"
+
+  # READ
+  get "/similars", :controller => "similars", :action => "index"
+  get "/similars/:id", :controller => "similars", :action => "show"
+
+  # UPDATE
+  get "/similars/:id/edit", :controller => "similars", :action => "edit"
+  post "/update_similar/:id", :controller => "similars", :action => "update"
+
+  # DELETE
+  get "/delete_similar/:id", :controller => "similars", :action => "destroy"
+  #------------------------------
+
   # Routes for the Available resource:
   # CREATE
   get "/availables/new", :controller => "availables", :action => "new"

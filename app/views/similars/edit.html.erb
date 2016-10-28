@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @similar.errors.any? %>
+  <% @similar.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Similar #<%= @similar.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_similar/<%= @similar.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for similar_name -->
+      <div class="form-group">
+        <label for="similar_name" class="control-label">
+          Similar name
+        </label>
+
+        <input type="text" id="similar_name" name="similar_name" placeholder="Similar name" class="form-control" value="<%= @similar.similar_name %>">
+      </div>
+
+      <!-- Label and input for foods_id -->
+      <div class="form-group">
+        <label for="foods_id" class="control-label">
+          Foods
+        </label>
+
+        <input type="text" id="foods_id" name="foods_id" placeholder="Foods" class="form-control" value="<%= @similar.foods_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Similar
+      </button>
+      or
+      <a href="/similars/<%= @similar.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

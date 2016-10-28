@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Similar #<%= @similar.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Similar name</dt>
+      <dd><%= @similar.similar_name %></dd>
+
+      <dt>Foods</dt>
+      <dd><%= @similar.foods_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/similars" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/similars/<%= @similar.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_similar/<%= @similar.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
