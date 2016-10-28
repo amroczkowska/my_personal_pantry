@@ -17,6 +17,10 @@ class Food < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :recipes,
+             :through => :foods_recipes,
+             :source => :recipes
+
   # Validations
 
 end
