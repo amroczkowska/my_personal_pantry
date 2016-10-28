@@ -17,7 +17,7 @@
       <% @foods_recipes.each do |foods_recipe| %>
       <tr>
         <td><%= foods_recipe.foods.name %></td>
-        <td><%= foods_recipe.recipes_id %></td>
+        <td><%= foods_recipe.recipes.name %></td>
         <td>
           <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">Show</a>
           <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">Edit</a>
