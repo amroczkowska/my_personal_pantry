@@ -24,7 +24,7 @@
           Similar
         </label>
 
-        <input type="text" id="similar_id" name="similar_id" placeholder="Similar" class="form-control" value="<%= @availables_similar.similar_id %>">
+        <%= select_tag(:similar_id, options_from_collection_for_select(Similar.all, :id, :similar_name, @availables_similar.similar_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for availables_id -->
