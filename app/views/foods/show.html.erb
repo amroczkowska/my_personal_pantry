@@ -23,3 +23,119 @@
     </div>
   </div>
 </div>
+
+<!-- A Food has many similar_foods -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Similar_foods
+      </li>
+
+      <% @food.similar_foods.each do |similar| %>
+        <li class="list-group-item">
+          <a href="/similars/<%= similar.id %>">
+            <%= similar.similar_name %>
+          </a>
+          <a href="/similars/<%= similar.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Food has many pantries -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Pantries
+      </li>
+
+      <% @food.pantries.each do |available| %>
+        <li class="list-group-item">
+          <a href="/availables/<%= available.id %>">
+            <%= available.foods_id %>
+          </a>
+          <a href="/availables/<%= available.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Food has many foods_recipes -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Foods_recipes
+      </li>
+
+      <% @food.foods_recipes.each do |foods_recipe| %>
+        <li class="list-group-item">
+          <a href="/foods_recipes/<%= foods_recipe.id %>">
+            <%= foods_recipe.foods_id %>
+          </a>
+          <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Food has many recipes -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Recipes
+      </li>
+
+      <% @food.recipes.each do |recipe| %>
+        <li class="list-group-item">
+          <a href="/recipes/<%= recipe.id %>">
+            <%= recipe.name %>
+          </a>
+          <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

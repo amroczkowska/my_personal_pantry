@@ -41,3 +41,61 @@
     </div>
   </div>
 </div>
+
+<!-- A Available has many similar_foods_availables -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Similar_foods_availables
+      </li>
+
+      <% @available.similar_foods_availables.each do |availables_similar| %>
+        <li class="list-group-item">
+          <a href="/availables_similars/<%= availables_similar.id %>">
+            <%= availables_similar.similar_id %>
+          </a>
+          <a href="/availables_similars/<%= availables_similar.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/availables_similars/<%= availables_similar.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_availables_similar/<%= availables_similar.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Available has many similar_foods -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Similar_foods
+      </li>
+
+      <% @available.similar_foods.each do |similar| %>
+        <li class="list-group-item">
+          <a href="/similars/<%= similar.id %>">
+            <%= similar.similar_name %>
+          </a>
+          <a href="/similars/<%= similar.id %>" class="btn btn-primary">
+            Show
+          </a>
+          <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
