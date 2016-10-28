@@ -33,7 +33,7 @@
           Foods
         </label>
 
-        <input type="text" id="foods_id" name="foods_id" placeholder="Foods" class="form-control" value="<%= @similar.foods_id %>">
+        <%= select_tag(:foods_id, options_from_collection_for_select(Food.all, :id, :name, @similar.foods_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
