@@ -17,7 +17,7 @@
       <% @similars.each do |similar| %>
       <tr>
         <td><%= similar.similar_name %></td>
-        <td><%= similar.foods_id %></td>
+        <td><%= similar.foods.name %></td>
         <td>
           <a href="/similars/<%= similar.id %>" class="btn btn-primary">Show</a>
           <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">Edit</a>
