@@ -21,7 +21,7 @@
 
       <% @availables.each do |available| %>
       <tr>
-        <td><%= available.foods_id %></td>
+        <td><%= available.foods.name %></td>
         <td><%= available.quantity %></td>
         <td><%= available.purchase_date %></td>
         <td><%= available.expiration_date %></td>
