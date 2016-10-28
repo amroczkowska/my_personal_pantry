@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h1>
+    Availables
+    <a href="/availables/new" class="btn btn-lg btn-success">New Available</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Foods</th>
+        <th>Quantity</th>
+        <th>Purchase date</th>
+        <th>Expiration date</th>
+        <th>Perishable ind</th>
+        <th>Storage area</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @availables.each do |available| %>
+      <tr>
+        <td><%= available.foods_id %></td>
+        <td><%= available.quantity %></td>
+        <td><%= available.purchase_date %></td>
+        <td><%= available.expiration_date %></td>
+        <td><%= available.perishable_ind %></td>
+        <td><%= available.storage_area %></td>
+        <td><%= available.type %></td>
+        <td>
+          <a href="/availables/<%= available.id %>" class="btn btn-primary">Show</a>
+          <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

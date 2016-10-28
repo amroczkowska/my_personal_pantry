@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Available resource:
+  # CREATE
+  get "/availables/new", :controller => "availables", :action => "new"
+  post "/create_available", :controller => "availables", :action => "create"
+
+  # READ
+  get "/availables", :controller => "availables", :action => "index"
+  get "/availables/:id", :controller => "availables", :action => "show"
+
+  # UPDATE
+  get "/availables/:id/edit", :controller => "availables", :action => "edit"
+  post "/update_available/:id", :controller => "availables", :action => "update"
+
+  # DELETE
+  get "/delete_available/:id", :controller => "availables", :action => "destroy"
+  #------------------------------
+
   # Routes for the Food resource:
   # CREATE
   get "/foods/new", :controller => "foods", :action => "new"

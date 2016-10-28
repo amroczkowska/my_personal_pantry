@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h3>Available #<%= @available.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Foods</dt>
+      <dd><%= @available.foods_id %></dd>
+
+      <dt>Quantity</dt>
+      <dd><%= @available.quantity %></dd>
+
+      <dt>Purchase date</dt>
+      <dd><%= @available.purchase_date %></dd>
+
+      <dt>Expiration date</dt>
+      <dd><%= @available.expiration_date %></dd>
+
+      <dt>Perishable ind</dt>
+      <dd><%= @available.perishable_ind %></dd>
+
+      <dt>Storage area</dt>
+      <dd><%= @available.storage_area %></dd>
+
+      <dt>Type</dt>
+      <dd><%= @available.type %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/availables" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/availables/<%= @available.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_available/<%= @available.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

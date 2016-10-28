@@ -1,0 +1,90 @@
+<!-- Validation failure messages -->
+<% if @available.errors.any? %>
+  <% @available.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Available #<%= @available.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_available/<%= @available.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for foods_id -->
+      <div class="form-group">
+        <label for="foods_id" class="control-label">
+          Foods
+        </label>
+
+        <input type="text" id="foods_id" name="foods_id" placeholder="Foods" class="form-control" value="<%= @available.foods_id %>">
+      </div>
+
+      <!-- Label and input for quantity -->
+      <div class="form-group">
+        <label for="quantity" class="control-label">
+          Quantity
+        </label>
+
+        <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @available.quantity %>">
+      </div>
+
+      <!-- Label and input for purchase_date -->
+      <div class="form-group">
+        <label for="purchase_date" class="control-label">
+          Purchase date
+        </label>
+
+        <input type="text" id="purchase_date" name="purchase_date" placeholder="Purchase date" class="form-control" value="<%= @available.purchase_date %>">
+      </div>
+
+      <!-- Label and input for expiration_date -->
+      <div class="form-group">
+        <label for="expiration_date" class="control-label">
+          Expiration date
+        </label>
+
+        <input type="text" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @available.expiration_date %>">
+      </div>
+
+      <!-- Label and input for perishable_ind -->
+      <div class="checkbox">
+        <label for="perishable_ind">
+          <input type="checkbox" id="perishable_ind" name="perishable_ind" value="1" <%= "checked" if @available.perishable_ind %>>
+          Perishable ind
+        </label>
+      </div>
+
+      <!-- Label and input for storage_area -->
+      <div class="form-group">
+        <label for="storage_area" class="control-label">
+          Storage area
+        </label>
+
+        <input type="text" id="storage_area" name="storage_area" placeholder="Storage area" class="form-control" value="<%= @available.storage_area %>">
+      </div>
+
+      <!-- Label and input for type -->
+      <div class="form-group">
+        <label for="type" class="control-label">
+          Type
+        </label>
+
+        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @available.type %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Available
+      </button>
+      or
+      <a href="/availables/<%= @available.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
