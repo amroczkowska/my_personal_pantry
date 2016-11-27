@@ -3,6 +3,151 @@
     Availables
     <a href="/availables/new" class="btn btn-lg btn-success">New Available</a>
   </h1>
+</div><div class="row mb-1">
+  <div class="col-md-12">
+    <%= search_form_for @q, :class => "collapse", :id => "availables_filters" do |f| %>
+      <p class="lead">Narrow results:</p>
+
+        <div class="form-group">
+    <%= f.label :type_cont, "Type contains" %>
+    <%= f.text_field :type_cont, :class => "form-control", :placeholder => "Type contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :storage_area_cont, "Storage area contains" %>
+    <%= f.text_field :storage_area_cont, :class => "form-control", :placeholder => "Storage area contains" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :perishable_ind_eq, "Perishable ind" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :perishable_ind_eq, "1", checked: ((params[:q] && params[:q][:perishable_ind_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :perishable_ind_eq, "0", checked: ((params[:q] && params[:q][:perishable_ind_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :perishable_ind_eq, ""%> Either
+      </label>
+    </div>
+  </div>
+
+<div class="form-group">
+    <%= f.label :expiration_date_cont, "Expiration date contains" %>
+    <%= f.text_field :expiration_date_cont, :class => "form-control", :placeholder => "Expiration date contains" %>
+  </div>
+
+<div class="form-group">
+          <%= f.label :purchase_date, "Purchase date" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='purchase_dategteqPicker'>
+                  <%= f.text_field :purchase_date_gteq, :class => "form-control", :placeholder => "Purchase date greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='purchase_datelteqPicker'>
+                  <%= f.text_field :purchase_date_lteq, :class => "form-control", :placeholder => "Purchase date less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#purchase_dategteqPicker').datetimepicker({
+                  format: 'MM/DD/YYYY'
+              });
+              $('#purchase_datelteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'MM/DD/YYYY'
+              });
+              $('#purchase_dategteqPicker').on("dp.change", function (e) {
+                  $('#purchase_datelteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#purchase_datelteqPicker').on("dp.change", function (e) {
+                  $('#purchase_dategteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+<div class="form-group">
+  <%= f.label :quantity, "Quantity" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :quantity_gteq, :class => "form-control", :placeholder => "Quantity greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :quantity_lteq, :class => "form-control", :placeholder => "Quantity less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+          <%= f.label :created_at, "Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='created_atgteqPicker'>
+                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='created_atlteqPicker'>
+                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#created_atgteqPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atlteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atgteqPicker').on("dp.change", function (e) {
+                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#created_atlteqPicker').on("dp.change", function (e) {
+                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+        <div class="form-group">
+      <%= f.label :foods_name_cont, "Food name contains" %>
+      <%= f.text_field :foods_name_cont, :class => "form-control", :placeholder => "Food name contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :similar_foods_similar_name_cont, "Similar similar_name contains" %>
+      <%= f.text_field :similar_foods_similar_name_cont, :class => "form-control", :placeholder => "Similar similar_name contains" %>
+    </div>
+
+      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+
+      <a href="/availables" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <% end %>
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#availables_filters">
+      Show Filters
+    </a>
+  </div>
 </div>
 
 <div class="row">
@@ -21,7 +166,13 @@
 
       <% @availables.each do |available| %>
       <tr>
-        <td><%= available.foods.name %></td>
+        <td>
+          <% if available.foods.present? %>
+            <a href="/foods/<%= available.foods.id %>">
+              <%= available.foods.name %>
+            </a>
+          <% end %>
+        </td>
         <td><%= available.quantity %></td>
         <td><%= available.purchase_date %></td>
         <td><%= available.expiration_date %></td>
@@ -36,5 +187,6 @@
       </tr>
       <% end %>
     </table>
+    <%= paginate @availables, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

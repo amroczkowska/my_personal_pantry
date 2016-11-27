@@ -3,13 +3,25 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Similar</dt>
-      <dd><%= @availables_similar.similar_id %></dd>
+      <dd>
+        <% if @availables_similar.similar_foods.present? %>
+          <a href="/similars/<%= @availables_similar.similar_id %>">
+            <%= @availables_similar.similar_foods.similar_name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Availables</dt>
-      <dd><%= @availables_similar.availables_id %></dd>
+      <dd>
+        <% if @availables_similar.availables.present? %>
+          <a href="/availables/<%= @availables_similar.availables_id %>">
+            <%= @availables_similar.availables.foods_id %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
