@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Name</dt>
       <dd><%= @food.name %></dd>
@@ -38,15 +38,17 @@
           <a href="/similars/<%= similar.id %>">
             <%= similar.similar_name %>
           </a>
-          <a href="/similars/<%= similar.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/similars/<%= similar.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -96,15 +98,17 @@
           <a href="/availables/<%= available.id %>">
             <%= available.foods_id %>
           </a>
-          <a href="/availables/<%= available.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/availables/<%= available.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -198,15 +202,17 @@
           <a href="/foods_recipes/<%= foods_recipe.id %>">
             <%= foods_recipe.foods_id %>
           </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -256,15 +262,17 @@
           <a href="/recipes/<%= recipe.id %>">
             <%= recipe.name %>
           </a>
-          <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
     </ul>

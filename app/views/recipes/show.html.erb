@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Name</dt>
       <dd><%= @recipe.name %></dd>
@@ -50,15 +50,17 @@
           <a href="/foods_recipes/<%= foods_recipe.id %>">
             <%= foods_recipe.foods_id %>
           </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -108,15 +110,17 @@
           <a href="/foods/<%= food.id %>">
             <%= food.name %>
           </a>
-          <a href="/foods/<%= food.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/foods/<%= food.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
     </ul>

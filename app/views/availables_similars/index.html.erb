@@ -16,8 +16,20 @@
 
       <% @availables_similars.each do |availables_similar| %>
       <tr>
-        <td><%= availables_similar.similar_foods.similar_name %></td>
-        <td><%= availables_similar.availables.foods_id %></td>
+        <td>
+          <% if availables_similar.similar_foods.present? %>
+            <a href="/similars/<%= availables_similar.similar_foods.id %>">
+              <%= availables_similar.similar_foods.similar_name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if availables_similar.availables.present? %>
+            <a href="/availables/<%= availables_similar.availables.id %>">
+              <%= availables_similar.availables.foods_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/availables_similars/<%= availables_similar.id %>" class="btn btn-primary">Show</a>
           <a href="/availables_similars/<%= availables_similar.id %>/edit" class="btn btn-warning">Edit</a>
@@ -26,5 +38,6 @@
       </tr>
       <% end %>
     </table>
+    <%= paginate @availables_similars, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
