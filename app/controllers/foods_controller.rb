@@ -1,29 +1,50 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @q = Food.ransack(params[:q])
+    @foods = @q.result(:distinct => true).includes(:pantries, :foods_recipes, :recipes).page(params[:page]).per(10)
+
+    render("foods/index.html.erb")
   end
 
   def show
+    @foods_recipe = FoodsRecipe.new
+    @available = Available.new
     @food = Food.find(params[:id])
+
+    render("foods/show.html.erb")
   end
 
   def new
     @food = Food.new
+
+    render("foods/new.html.erb")
   end
 
   def create
     @food = Food.new
+
     @food.name = params[:name]
 
-    if @food.save
-      redirect_to "/foods", :notice => "Food created successfully."
+    save_status = @food.save
+
+    if save_status == true
+      referer = URI(request.referer).path
+
+      case referer
+      when "/foods/new", "/create_food"
+        redirect_to("/foods")
+      else
+        redirect_back(:fallback_location => "/", :notice => "Food created successfully.")
+      end
     else
-      render 'new'
+      render("foods/new.html.erb")
     end
   end
 
   def edit
     @food = Food.find(params[:id])
+
+    render("foods/edit.html.erb")
   end
 
   def update
@@ -31,10 +52,19 @@ class FoodsController < ApplicationController
 
     @food.name = params[:name]
 
-    if @food.save
-      redirect_to "/foods", :notice => "Food updated successfully."
+    save_status = @food.save
+
+    if save_status == true
+      referer = URI(request.referer).path
+
+      case referer
+      when "/foods/#{@food.id}/edit", "/update_food"
+        redirect_to("/foods/#{@food.id}", :notice => "Food updated successfully.")
+      else
+        redirect_back(:fallback_location => "/", :notice => "Food updated successfully.")
+      end
     else
-      render 'edit'
+      render("foods/edit.html.erb")
     end
   end
 
@@ -43,6 +73,10 @@ class FoodsController < ApplicationController
 
     @food.destroy
 
-    redirect_to "/foods", :notice => "Food deleted."
+    if URI(request.referer).path == "/foods/#{@food.id}"
+      redirect_to("/", :notice => "Food deleted.")
+    else
+      redirect_back(:fallback_location => "/", :notice => "Food deleted.")
+    end
   end
 end

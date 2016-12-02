@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "foods#index"
   # Routes for the Foods_recipe resource:
@@ -34,40 +33,6 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_recipe/:id", :controller => "recipes", :action => "destroy"
-  #------------------------------
-
-  # Routes for the Availables_similar resource:
-  # CREATE
-  get "/availables_similars/new", :controller => "availables_similars", :action => "new"
-  post "/create_availables_similar", :controller => "availables_similars", :action => "create"
-
-  # READ
-  get "/availables_similars", :controller => "availables_similars", :action => "index"
-  get "/availables_similars/:id", :controller => "availables_similars", :action => "show"
-
-  # UPDATE
-  get "/availables_similars/:id/edit", :controller => "availables_similars", :action => "edit"
-  post "/update_availables_similar/:id", :controller => "availables_similars", :action => "update"
-
-  # DELETE
-  get "/delete_availables_similar/:id", :controller => "availables_similars", :action => "destroy"
-  #------------------------------
-
-  # Routes for the Similar resource:
-  # CREATE
-  get "/similars/new", :controller => "similars", :action => "new"
-  post "/create_similar", :controller => "similars", :action => "create"
-
-  # READ
-  get "/similars", :controller => "similars", :action => "index"
-  get "/similars/:id", :controller => "similars", :action => "show"
-
-  # UPDATE
-  get "/similars/:id/edit", :controller => "similars", :action => "edit"
-  post "/update_similar/:id", :controller => "similars", :action => "update"
-
-  # DELETE
-  get "/delete_similar/:id", :controller => "similars", :action => "destroy"
   #------------------------------
 
   # Routes for the Available resource:

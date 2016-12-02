@@ -36,15 +36,6 @@
         <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @available.quantity %>">
       </div>
 
-      <!-- Label and input for purchase_date -->
-      <div class="form-group">
-        <label for="purchase_date" class="control-label">
-          Purchase date
-        </label>
-
-        <input type="text" id="purchase_date" name="purchase_date" placeholder="Purchase date" class="form-control" value="<%= @available.purchase_date %>">
-      </div>
-
       <!-- Label and input for expiration_date -->
       <div class="form-group">
         <label for="expiration_date" class="control-label">
@@ -52,14 +43,6 @@
         </label>
 
         <input type="text" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @available.expiration_date %>">
-      </div>
-
-      <!-- Label and input for perishable_ind -->
-      <div class="checkbox">
-        <label for="perishable_ind">
-          <input type="checkbox" id="perishable_ind" name="perishable_ind" value="1" <%= "checked" if @available.perishable_ind %>>
-          Perishable ind
-        </label>
       </div>
 
       <!-- Label and input for storage_area -->
@@ -71,13 +54,13 @@
         <input type="text" id="storage_area" name="storage_area" placeholder="Storage area" class="form-control" value="<%= @available.storage_area %>">
       </div>
 
-      <!-- Label and input for type -->
+      <!-- Label and input for size -->
       <div class="form-group">
-        <label for="type" class="control-label">
-          Type
+        <label for="size" class="control-label">
+          Size
         </label>
 
-        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @available.type %>">
+        <input type="text" id="size" name="size" placeholder="Size" class="form-control" value="<%= @available.size %>">
       </div>
 
       <button class="btn btn-warning">
