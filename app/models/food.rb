@@ -10,11 +10,6 @@ class Food < ApplicationRecord
              :foreign_key => "foods_id",
              :dependent => :destroy
 
-  has_many   :similar_foods,
-             :class_name => "Similar",
-             :foreign_key => "foods_id",
-             :dependent => :destroy
-
   # Indirect associations
 
   has_many   :recipes,

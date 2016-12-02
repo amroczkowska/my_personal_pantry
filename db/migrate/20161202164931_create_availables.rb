@@ -3,11 +3,9 @@ class CreateAvailables < ActiveRecord::Migration
     create_table :availables do |t|
       t.integer :foods_id
       t.integer :quantity
-      t.date :purchase_date
-      t.string :expiration_date
-      t.boolean :perishable_ind
+      t.date :expiration_date
       t.string :storage_area
-      t.string :type
+      t.string :size
 
       t.timestamps
 

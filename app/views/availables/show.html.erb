@@ -3,28 +3,28 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Foods</dt>
-      <dd><%= @available.foods_id %></dd>
+      <dd>
+        <% if @available.foods.present? %>
+          <a href="/foods/<%= @available.foods_id %>">
+            <%= @available.foods.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Quantity</dt>
       <dd><%= @available.quantity %></dd>
 
-      <dt>Purchase date</dt>
-      <dd><%= @available.purchase_date %></dd>
-
       <dt>Expiration date</dt>
       <dd><%= @available.expiration_date %></dd>
-
-      <dt>Perishable ind</dt>
-      <dd><%= @available.perishable_ind %></dd>
 
       <dt>Storage area</dt>
       <dd><%= @available.storage_area %></dd>
 
-      <dt>Type</dt>
-      <dd><%= @available.type %></dd>
+      <dt>Size</dt>
+      <dd><%= @available.size %></dd>
 
     </dl>
 
@@ -39,92 +39,5 @@
         Delete
       </a>
     </div>
-  </div>
-</div>
-
-<!-- A Available has many similar_foods_availables -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Similar_foods_availables
-      </li>
-
-      <% @available.similar_foods_availables.each do |availables_similar| %>
-        <li class="list-group-item">
-          <a href="/availables_similars/<%= availables_similar.id %>">
-            <%= availables_similar.similar_id %>
-          </a>
-          <a href="/availables_similars/<%= availables_similar.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/availables_similars/<%= availables_similar.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_availables_similar/<%= availables_similar.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_availables_similar" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for similar_id -->
-      <div class="form-group">
-        <label for="similar_id" class="control-label">
-          Similar
-        </label>
-
-        <%= select_tag(:similar_id, options_from_collection_for_select(Similar.all, :id, :similar_name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for availables_id -->
-      <div class="form-group">
-        <label for="availables_id" class="control-label">
-          Availables
-        </label>
-
-        <%= select_tag(:availables_id, options_from_collection_for_select(Available.all, :id, :foods_id), :class => "form-control") %>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Availables Similar
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- A Available has many similar_foods -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Similar_foods
-      </li>
-
-      <% @available.similar_foods.each do |similar| %>
-        <li class="list-group-item">
-          <a href="/similars/<%= similar.id %>">
-            <%= similar.similar_name %>
-          </a>
-          <a href="/similars/<%= similar.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
-        </li>
-      <% end %>
-    </ul>
   </div>
 </div>

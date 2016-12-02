@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Name</dt>
       <dd><%= @food.name %></dd>
@@ -24,64 +24,6 @@
   </div>
 </div>
 
-<!-- A Food has many similar_foods -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Similar_foods
-      </li>
-
-      <% @food.similar_foods.each do |similar| %>
-        <li class="list-group-item">
-          <a href="/similars/<%= similar.id %>">
-            <%= similar.similar_name %>
-          </a>
-          <a href="/similars/<%= similar.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/similars/<%= similar.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_similar/<%= similar.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_similar" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for similar_name -->
-      <div class="form-group">
-        <label for="similar_name" class="control-label">
-          Similar name
-        </label>
-
-        <input type="text" id="similar_name" name="similar_name" placeholder="Similar name" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for foods_id -->
-      <div class="form-group">
-        <label for="foods_id" class="control-label">
-          Foods
-        </label>
-
-        <%= select_tag(:foods_id, options_from_collection_for_select(Food.all, :id, :name), :class => "form-control") %>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Similar
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
 <!-- A Food has many pantries -->
 
 <div class="row">
@@ -96,15 +38,17 @@
           <a href="/availables/<%= available.id %>">
             <%= available.foods_id %>
           </a>
-          <a href="/availables/<%= available.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/availables/<%= available.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -131,15 +75,6 @@
         <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="">
       </div>
 
-      <!-- Label and input for purchase_date -->
-      <div class="form-group">
-        <label for="purchase_date" class="control-label">
-          Purchase date
-        </label>
-
-        <input type="text" id="purchase_date" name="purchase_date" placeholder="Purchase date" class="form-control" value="">
-      </div>
-
       <!-- Label and input for expiration_date -->
       <div class="form-group">
         <label for="expiration_date" class="control-label">
@@ -147,14 +82,6 @@
         </label>
 
         <input type="text" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for perishable_ind -->
-      <div class="checkbox">
-        <label for="perishable_ind">
-          <input type="checkbox" id="perishable_ind" name="perishable_ind" value="1" <%= "checked" if @available.perishable_ind %>>
-          Perishable ind
-        </label>
       </div>
 
       <!-- Label and input for storage_area -->
@@ -166,13 +93,13 @@
         <input type="text" id="storage_area" name="storage_area" placeholder="Storage area" class="form-control" value="">
       </div>
 
-      <!-- Label and input for type -->
+      <!-- Label and input for size -->
       <div class="form-group">
-        <label for="type" class="control-label">
-          Type
+        <label for="size" class="control-label">
+          Size
         </label>
 
-        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="">
+        <input type="text" id="size" name="size" placeholder="Size" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">
@@ -198,15 +125,17 @@
           <a href="/foods_recipes/<%= foods_recipe.id %>">
             <%= foods_recipe.foods_id %>
           </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_foods_recipe/<%= foods_recipe.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
 
@@ -256,15 +185,17 @@
           <a href="/recipes/<%= recipe.id %>">
             <%= recipe.name %>
           </a>
-          <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">
-            Show
-          </a>
-          <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">
-            Edit
-          </a>
-          <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">
-            Delete
-          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
         </li>
       <% end %>
     </ul>

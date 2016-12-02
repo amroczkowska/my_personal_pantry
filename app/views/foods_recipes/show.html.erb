@@ -3,13 +3,25 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Foods</dt>
-      <dd><%= @foods_recipe.foods_id %></dd>
+      <dd>
+        <% if @foods_recipe.foods.present? %>
+          <a href="/foods/<%= @foods_recipe.foods_id %>">
+            <%= @foods_recipe.foods.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Recipes</dt>
-      <dd><%= @foods_recipe.recipes_id %></dd>
+      <dd>
+        <% if @foods_recipe.recipes.present? %>
+          <a href="/recipes/<%= @foods_recipe.recipes_id %>">
+            <%= @foods_recipe.recipes.name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
