@@ -1,1 +1,1 @@
-{"name":"My Personal Pantry3","repository":"https://github.com/amroczkowska/my_personal_pantry","env":{"CLOUDINARY_CLOUD_NAME":{"required":true},"CLOUDINARY_API_KEY":{"required":true},"CLOUDINARY_API_SECRET":{"required":true},"ROLLBAR_ACCESS_TOKEN":{"required":true}}}
+{"name":"My Personal Pantry4","repository":"https://github.com/amroczkowska/my_personal_pantry","env":{"CLOUDINARY_CLOUD_NAME":{"required":true},"CLOUDINARY_API_KEY":{"required":true},"CLOUDINARY_API_SECRET":{"required":true},"ROLLBAR_ACCESS_TOKEN":{"required":true}}}
