@@ -3,9 +3,11 @@ class CreateRecipes < ActiveRecord::Migration
     create_table :recipes do |t|
       t.string :name
       t.string :url
-      t.string :instructions
-      t.integer :ease
+      t.string :ingrediants
+      t.integer :image
       t.string :type
+      t.string :ease
+      t.integer :user_id
 
       t.timestamps
 

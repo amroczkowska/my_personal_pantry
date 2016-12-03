@@ -26,6 +26,7 @@ class AvailablesController < ApplicationController
     @available.expiration_date = params[:expiration_date]
     @available.storage_area = params[:storage_area]
     @available.size = params[:size]
+    @available.user_id = params[:user_id]
 
     save_status = @available.save
 
@@ -57,6 +58,7 @@ class AvailablesController < ApplicationController
     @available.expiration_date = params[:expiration_date]
     @available.storage_area = params[:storage_area]
     @available.size = params[:size]
+    @available.user_id = params[:user_id]
 
     save_status = @available.save
 

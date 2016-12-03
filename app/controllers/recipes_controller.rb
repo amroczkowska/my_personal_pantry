@@ -24,9 +24,11 @@ class RecipesController < ApplicationController
 
     @recipe.name = params[:name]
     @recipe.url = params[:url]
-    @recipe.instructions = params[:instructions]
-    @recipe.ease = params[:ease]
+    @recipe.ingrediants = params[:ingrediants]
+    @recipe.image = params[:image]
     @recipe.type = params[:type]
+    @recipe.ease = params[:ease]
+    @recipe.user_id = params[:user_id]
 
     save_status = @recipe.save
 
@@ -55,9 +57,11 @@ class RecipesController < ApplicationController
 
     @recipe.name = params[:name]
     @recipe.url = params[:url]
-    @recipe.instructions = params[:instructions]
-    @recipe.ease = params[:ease]
+    @recipe.ingrediants = params[:ingrediants]
+    @recipe.image = params[:image]
     @recipe.type = params[:type]
+    @recipe.ease = params[:ease]
+    @recipe.user_id = params[:user_id]
 
     save_status = @recipe.save
 
