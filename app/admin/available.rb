@@ -1,6 +1,6 @@
 ActiveAdmin.register Available do
 
- permit_params :foods_id, :quantity, :expiration_date, :storage_area, :size
+ permit_params :foods_id, :quantity, :expiration_date, :storage_area, :size, :user_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

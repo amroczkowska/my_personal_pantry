@@ -1,6 +1,6 @@
 ActiveAdmin.register Recipe do
 
- permit_params :name, :url, :instructions, :ease, :type
+ permit_params :name, :url, :ingrediants, :image, :type, :ease, :user_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

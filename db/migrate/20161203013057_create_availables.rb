@@ -6,6 +6,7 @@ class CreateAvailables < ActiveRecord::Migration
       t.date :expiration_date
       t.string :storage_area
       t.string :size
+      t.integer :user_id
 
       t.timestamps
 
