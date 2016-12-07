@@ -1,177 +1,180 @@
-<div class="page-header">
-  <h1>
-    Availables
-    <a href="/availables/new" class="btn btn-lg btn-success">New Available</a>
-  </h1>
-</div><div class="row mb-1">
-  <div class="col-md-12">
-    <%= search_form_for @q, :class => "collapse", :id => "availables_filters" do |f| %>
-      <p class="lead">Narrow results:</p>
+<!DOCTYPE html>
+<html>
+<head>
 
-        <div class="form-group">
-  <%= f.label :user_id, "User" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :user_id_gteq, :class => "form-control", :placeholder => "User greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :user_id_lteq, :class => "form-control", :placeholder => "User less than or equal to" %>
-    </div>
-  </div>
-</div>
 
-<div class="form-group">
-    <%= f.label :size_cont, "Size contains" %>
-    <%= f.text_field :size_cont, :class => "form-control", :placeholder => "Size contains" %>
-  </div>
 
-<div class="form-group">
-    <%= f.label :storage_area_cont, "Storage area contains" %>
-    <%= f.text_field :storage_area_cont, :class => "form-control", :placeholder => "Storage area contains" %>
-  </div>
+  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+</head>
+<body>
+  <div class="page-header">
+    <h1>
 
-<div class="form-group">
-          <%= f.label :expiration_date, "Expiration date" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='expiration_dategteqPicker'>
-                  <%= f.text_field :expiration_date_gteq, :class => "form-control", :placeholder => "Expiration date greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
+      <div style ="float: left;">
+        <a href="/availables/new" class="btn btn-lg btn-success">New Pantry Item</a></div>
+        <h1>
 
-            <div class='col-md-6'>
-              <div class='input-group date' id='expiration_datelteqPicker'>
-                  <%= f.text_field :expiration_date_lteq, :class => "form-control", :placeholder => "Expiration date less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
+          <h3><div sytle ="text-align: right; float: right;">  <form action="/recipes">
+
+            <input type="text" name="food_search">
+            <button class="btn btn-lg btn-success">Search</button>
+
+          </form></div>
+        </h3>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#expiration_dategteqPicker').datetimepicker({
-                  format: 'MM/DD/YYYY'
-              });
-              $('#expiration_datelteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'MM/DD/YYYY'
-              });
-              $('#expiration_dategteqPicker').on("dp.change", function (e) {
-                  $('#expiration_datelteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#expiration_datelteqPicker').on("dp.change", function (e) {
-                  $('#expiration_dategteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
 
-<div class="form-group">
-  <%= f.label :quantity, "Quantity" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :quantity_gteq, :class => "form-control", :placeholder => "Quantity greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :quantity_lteq, :class => "form-control", :placeholder => "Quantity less than or equal to" %>
-    </div>
-  </div>
-</div>
 
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
+      <div class="col-xs-12">
 
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
+        <div class ='pantry_list'>
+          <h3><b> Fridge</b></h3>
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>Food</th>
+              <th></th>
+              <th>Expiring?</th>
+              <th> </th>
+            </tr>
 
-        <div class="form-group">
-      <%= f.label :foods_name_cont, "Food name contains" %>
-      <%= f.text_field :foods_name_cont, :class => "form-control", :placeholder => "Food name contains" %>
-    </div>
+            <% @availables.each do |available| %>
 
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+            <% if available.storage_area == 'Fridge' %>
+            <tr>
+              <td>
+                <%= available.quantity %>
+                <%= available.size %></td>
 
-      <a href="/availables" class="btn btn-default btn-block mb-1">Clear filters</a>
-    <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#availables_filters">
-      Show Filters
-    </a>
-  </div>
-</div>
+                <td>
+                  <form action="/recipes">  <input type="hidden" name="food_search" value ="<%=Food.find(available.foods_id).name %>"><input type="submit" value= "<%=Food.find(available.foods_id).name %>" style = "food_button"></form></td>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Foods</th>
-        <th>Quantity</th>
-        <th>Expiration date</th>
-        <th>Storage area</th>
-        <th>Size</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
+                  <% if available.expiration_date.nil? %>
+                  <td> </td>
+                  <% else %>
+                  <% if available.expiration_date - Date.today < 0 %>
 
-      <% @availables.each do |available| %>
-      <tr>
-        <td>
-          <% if available.foods.present? %>
-            <a href="/foods/<%= available.foods.id %>">
-              <%= available.foods.name %>
-            </a>
-          <% end %>
-        </td>
-        <td><%= available.quantity %></td>
-        <td><%= available.expiration_date %></td>
-        <td><%= available.storage_area %></td>
-        <td><%= available.size %></td>
-        <td><%= available.user_id %></td>
-        <td>
-          <a href="/availables/<%= available.id %>" class="btn btn-primary">Show</a>
-          <a href="/availables/<%= available.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_available/<%= available.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @availables, theme: 'twitter-bootstrap-4' %>
-  </div>
-</div>
+                  <td>     <font color="#8A0707"> EXPIRED!</font></td>
+
+                  <% elsif available.expiration_date - Date.today < 3 %>
+
+                  <td>     <font color="red"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+                  <% elsif available.expiration_date - Date.today < 8 %>
+
+                      <td>     <font color="#ede436"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+
+                  <% else %>
+
+                  <td>  <%= distance_of_time_in_words_to_now(available.expiration_date) %></td>
+
+                  <% end %>
+
+
+                  <% end %>
+
+                    <td> <a href="/delete_available/<%= available.id %>" class="glyphicon glyphicon-trash" rel="nofollow"></a></td></tr>
+                    <% end %>
+                    <% end %>
+
+                  </table>
+                </div>
+
+                <div class ='pantry_list'>
+                  <h3><b> Freezer</b></h3>
+                  <table class="table table-striped table-hover">
+                    <tr>
+                      <th>Food</th>
+                      <th></th>
+                      <th>Expiring?</th>
+                                    <th> </th>
+                    </tr>
+
+                    <% @availables.each do |available| %>
+
+                    <% if available.storage_area == 'Freezer' %>
+                    <tr>
+                      <td>
+                        <%= available.quantity %>
+                        <%= available.size %>
+
+                        <td>
+                          <form action="/recipes">  <input type="hidden" name="food_search" value ="<%=Food.find(available.foods_id).name %>"><input type="submit" value= "<%=Food.find(available.foods_id).name %>" style = "food_button"></form></td>
+                        </td>
+
+                        <% if available.expiration_date.nil? %>
+                        <td> </td>
+                        <% else %>
+                        <% if available.expiration_date - Date.today < 0 %>
+
+                        <td>     <font color="#8A0707"> EXPIRED!</font></td>
+
+                        <% elsif available.expiration_date - Date.today < 3 %>
+
+                        <td>     <font color="red"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+                        <% elsif available.expiration_date - Date.today < 8 %>
+
+                            <td>     <font color="#ede436"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+
+                        <% else %>
+
+                        <td>  <%= distance_of_time_in_words_to_now(available.expiration_date) %></td>
+
+                        <% end %>
+
+                        <% end %>
+
+                          <td> <a href="/delete_available/<%= available.id %>" class="glyphicon glyphicon-trash" rel="nofollow"></a></td></tr>
+                          <% end %>
+                          <% end %>
+                        </table>
+                      </div>
+
+
+                      <div class ='pantry_list'>
+                        <h3><b> Pantry</b></h3>
+                        <table class="table table-striped table-hover">
+                          <tr>
+                            <th>Food</th>
+                            <th></th>
+                            <th>Expiring?</th>
+                                          <th> </th>
+                          </tr>
+
+                          <% @availables.each do |available| %>
+
+                          <% if available.storage_area == 'Pantry' %>
+                          <tr>
+                            <td>
+                              <%= available.quantity %>
+                              <%= available.size %>
+
+                              <td>
+                                <form action="/recipes">  <input type="hidden" name="food_search" value ="<%=Food.find(available.foods_id).name %>"><input type="submit" value= "<%=Food.find(available.foods_id).name %>" style = "food_button"></form></td>
+                              </td>
+
+                              <% if available.expiration_date.nil? %>
+                              <td> </td>
+                              <% else %>
+                              <% if available.expiration_date - Date.today < 0 %>
+
+                              <td>     <font color="#8A0707"> EXPIRED!</font></td>
+
+                              <% elsif available.expiration_date - Date.today < 3 %>
+
+                              <td>     <font color="red"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+                              <% elsif available.expiration_date - Date.today < 8 %>
+
+                                  <td>     <font color="#ede436"> <%= distance_of_time_in_words_to_now(available.expiration_date) %></font></td>
+
+                              <% else %>
+
+                              <td>  <%= distance_of_time_in_words_to_now(available.expiration_date) %></td>
+
+                              <% end %>
+
+                              <% end %>
+                              <td> <a href="/delete_available/<%= available.id %>" class="glyphicon glyphicon-trash" rel="nofollow"></a></td></tr>
+
+                              <% end %>
+                              <% end %>
+                            </table>
+                          </div>
+                        </div></body>

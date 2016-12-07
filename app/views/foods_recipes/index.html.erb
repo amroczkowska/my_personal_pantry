@@ -16,20 +16,8 @@
 
       <% @foods_recipes.each do |foods_recipe| %>
       <tr>
-        <td>
-          <% if foods_recipe.foods.present? %>
-            <a href="/foods/<%= foods_recipe.foods.id %>">
-              <%= foods_recipe.foods.name %>
-            </a>
-          <% end %>
-        </td>
-        <td>
-          <% if foods_recipe.recipes.present? %>
-            <a href="/recipes/<%= foods_recipe.recipes.id %>">
-              <%= foods_recipe.recipes.name %>
-            </a>
-          <% end %>
-        </td>
+        <td><%= foods_recipe.foods.name %></td>
+        <td><%= foods_recipe.recipes.name %></td>
         <td>
           <a href="/foods_recipes/<%= foods_recipe.id %>" class="btn btn-primary">Show</a>
           <a href="/foods_recipes/<%= foods_recipe.id %>/edit" class="btn btn-warning">Edit</a>
@@ -38,6 +26,5 @@
       </tr>
       <% end %>
     </table>
-    <%= paginate @foods_recipes, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

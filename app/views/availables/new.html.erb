@@ -25,7 +25,10 @@
         </label>
 
         <%= select_tag(:foods_id, options_from_collection_for_select(Food.all, :id, :name, @available.foods_id), :class => "form-control") %>
+
       </div>
+
+
 
       <!-- Label and input for quantity -->
       <div class="form-group">
@@ -36,47 +39,71 @@
         <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @available.quantity %>">
       </div>
 
+      <!-- Label and input for purchase_date -->
+
       <!-- Label and input for expiration_date -->
       <div class="form-group">
         <label for="expiration_date" class="control-label">
           Expiration date
         </label>
 
-        <input type="text" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @available.expiration_date %>">
+        <input type="date" id="expiration_date" name="expiration_date" placeholder="Expiration date" class="form-control" value="<%= @available.expiration_date %>">
       </div>
+
+      <!-- Label and input for perishable_ind -->
+      <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+
+    </div>
 
       <!-- Label and input for storage_area -->
       <div class="form-group">
         <label for="storage_area" class="control-label">
           Storage area
         </label>
+  <%= select_tag(:storage_area, options_for_select(['Fridge','Freezer','Pantry']), :class => "form-control") %>
+    </div>
 
-        <input type="text" id="storage_area" name="storage_area" placeholder="Storage area" class="form-control" value="<%= @available.storage_area %>">
-      </div>
-
-      <!-- Label and input for size -->
+      <!-- Label and input for type -->
       <div class="form-group">
-        <label for="size" class="control-label">
-          Size
+        <label for="type" class="control-label">
+          Type
         </label>
 
-        <input type="text" id="size" name="size" placeholder="Size" class="form-control" value="<%= @available.size %>">
+        <%= select_tag(:size, options_for_select(['can','oz','tbsp','tsp','cup','lb', 'piece']), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @available.user_id %>">
-      </div>
 
       <button class="btn btn-success">
-        Create Available
+        Create Pantry Item
       </button>
       or
       <a href="/availables">Cancel</a>
     </form>
+
+
+    <form action="/create_food" method="post">
+                  <!-- Hidden input for authenticity token to protect from forgery -->
+                  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+
+
+                  <!-- Label and input for body -->
+                  <div class="form-group">
+                    <label for="name" class="control-label">
+                      New Food
+                    </label>
+
+
+                    <input type="text" id="name" name="name"  class="form-control" required>
+                  </div>
+
+                  <button class="btn btn-success">
+                    Create New Food
+                  </button>
+
+                </form>
+
   </div>
 </div>

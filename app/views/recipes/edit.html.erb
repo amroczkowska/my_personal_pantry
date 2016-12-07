@@ -36,31 +36,13 @@
         <input type="text" id="url" name="url" placeholder="Url" class="form-control" value="<%= @recipe.url %>">
       </div>
 
-      <!-- Label and input for ingrediants -->
+      <!-- Label and input for instructions -->
       <div class="form-group">
-        <label for="ingrediants" class="control-label">
-          Ingrediants
+        <label for="instructions" class="control-label">
+          Instructions
         </label>
 
-        <input type="text" id="ingrediants" name="ingrediants" placeholder="Ingrediants" class="form-control" value="<%= @recipe.ingrediants %>">
-      </div>
-
-      <!-- Label and input for image -->
-      <div class="form-group">
-        <label for="image" class="control-label">
-          Image
-        </label>
-
-        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @recipe.image %>">
-      </div>
-
-      <!-- Label and input for type -->
-      <div class="form-group">
-        <label for="type" class="control-label">
-          Type
-        </label>
-
-        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @recipe.type %>">
+        <input type="text" id="instructions" name="instructions" placeholder="Instructions" class="form-control" value="<%= @recipe.instructions %>">
       </div>
 
       <!-- Label and input for ease -->
@@ -72,13 +54,13 @@
         <input type="text" id="ease" name="ease" placeholder="Ease" class="form-control" value="<%= @recipe.ease %>">
       </div>
 
-      <!-- Label and input for user_id -->
+      <!-- Label and input for type -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
+        <label for="type" class="control-label">
+          Type
         </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @recipe.user_id %>">
+        <input type="text" id="type" name="type" placeholder="Type" class="form-control" value="<%= @recipe.type %>">
       </div>
 
       <button class="btn btn-warning">

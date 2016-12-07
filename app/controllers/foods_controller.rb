@@ -1,50 +1,29 @@
 class FoodsController < ApplicationController
   def index
-    @q = Food.ransack(params[:q])
-    @foods = @q.result(:distinct => true).includes(:pantries, :foods_recipes, :recipes).page(params[:page]).per(10)
-
-    render("foods/index.html.erb")
+    @foods = Food.all
   end
 
   def show
-    @foods_recipe = FoodsRecipe.new
-    @available = Available.new
     @food = Food.find(params[:id])
-
-    render("foods/show.html.erb")
   end
 
   def new
     @food = Food.new
-
-    render("foods/new.html.erb")
   end
 
   def create
     @food = Food.new
-
     @food.name = params[:name]
 
-    save_status = @food.save
-
-    if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/foods/new", "/create_food"
-        redirect_to("/foods")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Food created successfully.")
-      end
+    if @food.save
+      redirect_to "/availables/new", :notice => "Food created successfully."
     else
-      render("foods/new.html.erb")
+      render 'new'
     end
   end
 
   def edit
     @food = Food.find(params[:id])
-
-    render("foods/edit.html.erb")
   end
 
   def update
@@ -52,19 +31,10 @@ class FoodsController < ApplicationController
 
     @food.name = params[:name]
 
-    save_status = @food.save
-
-    if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/foods/#{@food.id}/edit", "/update_food"
-        redirect_to("/foods/#{@food.id}", :notice => "Food updated successfully.")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Food updated successfully.")
-      end
+    if @food.save
+      redirect_to "/foods", :notice => "Food updated successfully."
     else
-      render("foods/edit.html.erb")
+      render 'edit'
     end
   end
 
@@ -73,10 +43,6 @@ class FoodsController < ApplicationController
 
     @food.destroy
 
-    if URI(request.referer).path == "/foods/#{@food.id}"
-      redirect_to("/", :notice => "Food deleted.")
-    else
-      redirect_back(:fallback_location => "/", :notice => "Food deleted.")
-    end
+    redirect_to "/foods", :notice => "Food deleted."
   end
 end

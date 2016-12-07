@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'foods.csv'))
+csv = CSV.parse(csv_text, :headers => true,)
+csv.each do |row|
+  t = Food.new
+  t.name = row['name']
+  t.save
+
+end
+
+puts "There are now #{Food.count} rows in the transactions table"

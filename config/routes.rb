@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   ActiveAdmin.routes(self)
-  root :to => "foods#index"
+  root :to => "recipes#index"
   # Routes for the Foods_recipe resource:
   # CREATE
   get "/foods_recipes/new", :controller => "foods_recipes", :action => "new"
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
   # READ
   get "/recipes", :controller => "recipes", :action => "index"
   get "/recipes/:id", :controller => "recipes", :action => "show"
+  get "/myrecipes", :controller => "recipes", :action => "mine"
+
 
   # UPDATE
   get "/recipes/:id/edit", :controller => "recipes", :action => "edit"

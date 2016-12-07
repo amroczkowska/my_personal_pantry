@@ -12,5 +12,6 @@ class Recipe < ApplicationRecord
              :source => :foods
 
   # Validations
+  belongs_to :user
 
 end

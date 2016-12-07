@@ -1,148 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+</head>
+<body>
+
 <div class="page-header">
   <h1>
-    Recipes
-    <a href="/recipes/new" class="btn btn-lg btn-success">New Recipe</a>
-  </h1>
-</div><div class="row mb-1">
-  <div class="col-md-12">
-    <%= search_form_for @q, :class => "collapse", :id => "recipes_filters" do |f| %>
-      <p class="lead">Narrow results:</p>
+    <div style ="float: left;">
+      <a href="/recipes" class="btn btn-lg btn-success">Random</a></div>
+  <h1>
 
-        <div class="form-group">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont, :class => "form-control", :placeholder => "Name contains" %>
-  </div>
+  <h3><div sytle ="text-align: right; float: right;">  <form action="/recipes">
 
-<div class="form-group">
-  <%= f.label :user_id, "User" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :user_id_gteq, :class => "form-control", :placeholder => "User greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :user_id_lteq, :class => "form-control", :placeholder => "User less than or equal to" %>
-    </div>
-  </div>
+  <input type="text" name="food_search">
+  <button class="btn btn-lg btn-success">Search</button>
+
+</form></div>
+  </h3>
 </div>
 
-<div class="form-group">
-    <%= f.label :ease_cont, "Ease contains" %>
-    <%= f.text_field :ease_cont, :class => "form-control", :placeholder => "Ease contains" %>
-  </div>
 
-<div class="form-group">
-    <%= f.label :type_cont, "Type contains" %>
-    <%= f.text_field :type_cont, :class => "form-control", :placeholder => "Type contains" %>
-  </div>
 
-<div class="form-group">
-  <%= f.label :image, "Image" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :image_gteq, :class => "form-control", :placeholder => "Image greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :image_lteq, :class => "form-control", :placeholder => "Image less than or equal to" %>
-    </div>
-  </div>
-</div>
 
-<div class="form-group">
-    <%= f.label :ingrediants_cont, "Ingrediants contains" %>
-    <%= f.text_field :ingrediants_cont, :class => "form-control", :placeholder => "Ingrediants contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :url_cont, "Url contains" %>
-    <%= f.text_field :url_cont, :class => "form-control", :placeholder => "Url contains" %>
-  </div>
-
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-        <div class="form-group">
-      <%= f.label :foods_name_cont, "Food name contains" %>
-      <%= f.text_field :foods_name_cont, :class => "form-control", :placeholder => "Food name contains" %>
-    </div>
-
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
-
-      <a href="/recipes" class="btn btn-default btn-block mb-1">Clear filters</a>
-    <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#recipes_filters">
-      Show Filters
-    </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Name</th>
-        <th>Url</th>
-        <th>Ingrediants</th>
-        <th>Image</th>
-        <th>Type</th>
-        <th>Ease</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
 
       <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.url %></td>
-        <td><%= recipe.ingrediants %></td>
-        <td><%= recipe.image %></td>
-        <td><%= recipe.type %></td>
-        <td><%= recipe.ease %></td>
-        <td><%= recipe.user_id %></td>
-        <td>
-          <a href="/recipes/<%= recipe.id %>" class="btn btn-primary">Show</a>
-          <a href="/recipes/<%= recipe.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_recipe/<%= recipe.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @recipes, theme: 'twitter-bootstrap-4' %>
-  </div>
+<div class ="profil_card">
+
+
+<img src="<%= recipe['recipe']['image'] %>">
+<div class = 'mycolright'>
+<h5><b><center><%= recipe['recipe']['label'] %></center></b></h5>
+
+<% recipe['recipe']['ingredientLines'].take(9).each do |ingrediant| %>
+<li style = "list-unstyled"><%= ingrediant %></li>
+
+<% end %>
+<% if recipe['recipe']['ingredientLines'].length >9 %>
+... <% end %>
+<br><center><a target="_blank" href ='<%= recipe['recipe']['url'] %>'>Link to Recipe </a></center>
+<form action="/create_recipe" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="url" value="<%= recipe['recipe']['url'] %>">
+          <input type="hidden" name="name" value="<%= recipe['recipe']['label'] %>">
+          <input type="hidden" name="ingrediants" value="<%= recipe['recipe']['ingredientLines'] %>">
+          <input type="hidden" name="image" value="<%= recipe['recipe']['image'] %>">
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+          <center><button class="btn btn-link">
+            <i class="fa fa-heart-o"></i>
+          </button></center>
+        </form>
+
 </div>
+</div>
+
+      <% end %>
+
+    </body>

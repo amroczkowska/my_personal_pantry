@@ -5,11 +5,9 @@ class Food < ApplicationRecord
              :foreign_key => "foods_id",
              :dependent => :destroy
 
-  has_many   :pantries,
-             :class_name => "Available",
-             :foreign_key => "foods_id",
+  has_many   :availables,
+            :foreign_key => "foods_id",
              :dependent => :destroy
-
   # Indirect associations
 
   has_many   :recipes,

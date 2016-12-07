@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+</head>
+<body>
+
+<div class="page-header">
+  <h1>
+    My Recipes
+
+  </h1>
+</div>
+
+
+
+
+
+      <% @recipes.each do |recipe| %>
+<div class ="profil_card">
+
+
+<img src="<%= recipe.image %>">
+<div class = 'mycolright'>
+<h5><b><center><%= recipe.name %></center></b></h5>
+
+<% ingred = recipe.ingrediants[2..-1].chomp('"]').split('", "') %>
+<% ingred.take(9).each do |ingrediant| %>
+<li style = "list-unstyled"><%= ingrediant %></li>
+
+<% end %>
+<% if ingred.length >9 %>
+... <% end %>
+<br><center><a target="_blank" href ='<%= recipe.url %>'>Link to Recipe </a></center>
+<br>  <center><a href="/delete_recipe/<%= recipe.id %>" class="btn btn-link">
+<i class="fa fa-heart"></i>
+</a></center>
+
+</div>
+
+
+</div>
+
+      <% end %>
+
+
+
+
+</body>

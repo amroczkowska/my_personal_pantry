@@ -1,55 +1,61 @@
+require 'open-uri'
+
 class RecipesController < ApplicationController
   def index
-    @q = Recipe.ransack(params[:q])
-    @recipes = @q.result(:distinct => true).includes(:foods_recipes, :foods).page(params[:page]).per(10)
+if params[:food_search].nil?
 
-    render("recipes/index.html.erb")
+  @random = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'].sample
+else
+
+  @random = params[:food_search]
+
+end
+
+
+
+    @url = 'https://api.edamam.com/search?q='+@random+'&app_id=59982328&app_key=e4916e4bb6a2ed1ccd4f12dcda5108b3'
+        @parsed_data = JSON.parse(open(@url).read)
+
+    @recipehits = @parsed_data['count']
+    @recipes= @parsed_data['hits']
+
+
   end
 
   def show
-    @foods_recipe = FoodsRecipe.new
     @recipe = Recipe.find(params[:id])
-
-    render("recipes/show.html.erb")
   end
+
+  def mine
+@recipes = Recipe.where({:user_id => current_user.id})
+
+  end
+
+
 
   def new
     @recipe = Recipe.new
-
-    render("recipes/new.html.erb")
   end
 
   def create
     @recipe = Recipe.new
-
     @recipe.name = params[:name]
     @recipe.url = params[:url]
     @recipe.ingrediants = params[:ingrediants]
     @recipe.image = params[:image]
-    @recipe.type = params[:type]
     @recipe.ease = params[:ease]
+    @recipe.type = params[:type]
     @recipe.user_id = params[:user_id]
 
-    save_status = @recipe.save
-
-    if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/recipes/new", "/create_recipe"
-        redirect_to("/recipes")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Recipe created successfully.")
-      end
+    if @recipe.save
+      redirect_to "/myrecipes", :notice => "Recipe created successfully."
     else
-      render("recipes/new.html.erb")
+      render 'new'
     end
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
-
-    render("recipes/edit.html.erb")
   end
 
   def update
@@ -58,24 +64,14 @@ class RecipesController < ApplicationController
     @recipe.name = params[:name]
     @recipe.url = params[:url]
     @recipe.ingrediants = params[:ingrediants]
-    @recipe.image = params[:image]
-    @recipe.type = params[:type]
     @recipe.ease = params[:ease]
+    @recipe.type = params[:type]
     @recipe.user_id = params[:user_id]
 
-    save_status = @recipe.save
-
-    if save_status == true
-      referer = URI(request.referer).path
-
-      case referer
-      when "/recipes/#{@recipe.id}/edit", "/update_recipe"
-        redirect_to("/recipes/#{@recipe.id}", :notice => "Recipe updated successfully.")
-      else
-        redirect_back(:fallback_location => "/", :notice => "Recipe updated successfully.")
-      end
+    if @recipe.save
+      redirect_to "/recipes", :notice => "Recipe updated successfully."
     else
-      render("recipes/edit.html.erb")
+      render 'edit'
     end
   end
 
@@ -84,10 +80,11 @@ class RecipesController < ApplicationController
 
     @recipe.destroy
 
-    if URI(request.referer).path == "/recipes/#{@recipe.id}"
-      redirect_to("/", :notice => "Recipe deleted.")
-    else
-      redirect_back(:fallback_location => "/", :notice => "Recipe deleted.")
-    end
+    redirect_to "/myrecipes", :notice => "Recipe deleted."
+  end
+
+  def query
+
+
   end
 end
